@@ -16,7 +16,7 @@ defmodule PhoenixTodoList.Router do
   scope "/", PhoenixTodoList do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
+    get "/", ListController, :index
   end
 
   # Other scopes may use custom stacks.

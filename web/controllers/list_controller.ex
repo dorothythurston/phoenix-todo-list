@@ -1,4 +1,4 @@
-defmodule PhoenixTodoList.PageController do
+defmodule PhoenixTodoList.ListController do
   use PhoenixTodoList.Web, :controller
 
   def index(conn, _params) do

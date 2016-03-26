@@ -1,0 +1,13 @@
+<%= form_for @changeset, @action, fn f -> %>
+
+  <%= if @changeset.action do %>
+    <p>Oops! Something went wrong.</p>
+  <% end %>
+
+  <label>
+    Name: <%= text_input f, :name %>
+    <%= error_tag f, :name %>
+  </label>
+
+  <%= submit @button_text %>
+<% end %>

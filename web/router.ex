@@ -17,6 +17,8 @@ defmodule PhoenixTodoList.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", ListController, :index
+
+    resources "/lists", ListController, only: [:new, :create, :show]
   end
 
   # Other scopes may use custom stacks.

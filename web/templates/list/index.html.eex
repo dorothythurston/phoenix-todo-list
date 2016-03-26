@@ -1,1 +1,10 @@
+<%= link "New List", to: list_path(@conn, :new) %>
 <h1>My Lists:</h1>
+
+<ul>
+  <%= for list <- @lists do %>
+    <li>
+      <%= link list.name, to: list_path(@conn, :show, list) %>
+    </li>
+  <% end %>
+</ul>

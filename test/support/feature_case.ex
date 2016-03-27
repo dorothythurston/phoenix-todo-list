@@ -7,6 +7,8 @@ defmodule PhoenixTodoList.FeatureCase do
 
       use Hound.Helpers
 
+      import FeatureHelpers
+
       hound_session
     end
   end

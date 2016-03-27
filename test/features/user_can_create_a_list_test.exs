@@ -4,16 +4,16 @@ defmodule AddListsTest do
   test "user can add a list" do
     navigate_to("/")
 
-    find_all_elements(:link_text, "New List")
-    click {:link_text, "New List"}
+    click_on "New List"
 
-    new_list_name = find_element(:id, "list-name")
+    fill_in("list[name]", "Awesome list")
+    submit
 
-    new_list_name
-    |> find_within_element(:id, "list_name")
-    |> fill_field("Awesome list")
-    submit_element(new_list_name)
+    assert list_text =~ "Awesome list"
+  end
 
-    assert visible_in_element?({:css, "h1"}, ~r/Awesome list/)
+  defp list_text do
+    find_role("list")
+    |> visible_text
   end
 end

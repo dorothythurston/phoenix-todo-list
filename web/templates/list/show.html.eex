@@ -1,2 +1,4 @@
-<h1><%= @list.name %></h1>
-<%= link "Edit List", to: list_path(@conn, :edit, @list) %>
+<div data-role="list">
+  <h1><%= @list.name %></h1>
+  <%= link "Edit List", to: list_path(@conn, :edit, @list) %>
+</div>

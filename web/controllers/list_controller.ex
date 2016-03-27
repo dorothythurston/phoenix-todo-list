@@ -31,4 +31,24 @@ defmodule PhoenixTodoList.ListController do
     list = Repo.get!(List, id)
     render conn, :show, list: list
   end
+
+  def edit(conn, %{"id" => id}) do
+    list = Repo.get!(List, id)
+    changeset = List.changeset(list)
+    render conn, :edit, changeset: changeset, list: list
+  end
+
+  def update(conn, %{"id" => id, "list" => list_params}) do
+    list = Repo.get!(List, id)
+    changeset = List.changeset(list, list_params)
+
+    case Repo.update(changeset) do
+      {:ok, list} ->
+        conn
+        |> put_flash(:info, "Updated list!")
+        |> redirect(to: list_path(conn, :show, list))
+      {:error, changset} ->
+        render(conn, :edit, changeset: changeset, list: list)
+    end
+  end
 end

@@ -17,3 +17,5 @@ config :phoenix_todo_list, PhoenixTodoList.Repo,
   database: "phoenix_todo_list_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :hound, driver: "phantomjs"

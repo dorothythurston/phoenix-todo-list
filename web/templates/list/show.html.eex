@@ -1,1 +1,2 @@
 <h1><%= @list.name %></h1>
+<%= link "Edit List", to: list_path(@conn, :edit, @list) %>

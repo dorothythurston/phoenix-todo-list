@@ -18,7 +18,7 @@ defmodule PhoenixTodoList.Router do
 
     get "/", ListController, :index
 
-    resources "/lists", ListController, only: [:new, :create, :show]
+    resources "/lists", ListController, only: [:new, :create, :show, :edit, :update]
   end
 
   # Other scopes may use custom stacks.

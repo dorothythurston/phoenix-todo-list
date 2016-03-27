@@ -51,4 +51,12 @@ defmodule PhoenixTodoList.ListController do
         render(conn, :edit, changeset: changeset, list: list)
     end
   end
+
+  def delete(conn, %{"id" => id}) do
+    list = Repo.get!(List, id)
+    Repo.delete!(list)
+    conn
+    |> put_flash(:info, "List deleted successfully.")
+    |> redirect(to: list_path(conn, :index))
+  end
 end

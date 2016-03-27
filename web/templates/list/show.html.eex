@@ -1,4 +1,5 @@
 <div data-role="list">
   <h1><%= @list.name %></h1>
   <%= link "Edit List", to: list_path(@conn, :edit, @list) %>
+  <%= link "Delete List", to: list_path(@conn, :delete, @list), method: :delete %>
 </div>

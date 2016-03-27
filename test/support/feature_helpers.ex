@@ -17,4 +17,13 @@ defmodule FeatureHelpers do
   def click_on(text) do
     click {:link_text, text}
   end
+
+  def text_for_css_data_role(role) do
+    find_role(role)
+    |> visible_text
+  end
+
+  def list_text do
+    text_for_css_data_role("list")
+  end
 end

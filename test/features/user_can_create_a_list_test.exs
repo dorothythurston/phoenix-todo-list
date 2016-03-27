@@ -11,9 +11,4 @@ defmodule AddListsTest do
 
     assert list_text =~ "Awesome list"
   end
-
-  defp list_text do
-    find_role("list")
-    |> visible_text
-  end
 end

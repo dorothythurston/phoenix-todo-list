@@ -2,6 +2,7 @@ defmodule PhoenixTodoList.ListController do
   use PhoenixTodoList.Web, :controller
 
   alias PhoenixTodoList.List
+  alias PhoenixTodoList.Item
 
   def index(conn, _params) do
    conn
@@ -22,14 +23,15 @@ defmodule PhoenixTodoList.ListController do
         conn
         |> put_flash(:info, "Created list!")
         |> redirect(to: list_path(conn, :show, list))
-      {:error, changset} ->
+      {:error, changeset} ->
         render(conn, :new, changeset: changeset)
     end
   end
 
   def show(conn, %{"id" => id}) do
-    list = Repo.get!(List, id)
-    render conn, :show, list: list
+    list = Repo.get!(List, id) |> Repo.preload(:items)
+    item_changeset = Item.changeset(%Item{})
+    render conn, :show, list: list, item_changeset: item_changeset
   end
 
   def edit(conn, %{"id" => id}) do
@@ -47,7 +49,7 @@ defmodule PhoenixTodoList.ListController do
         conn
         |> put_flash(:info, "Updated list!")
         |> redirect(to: list_path(conn, :show, list))
-      {:error, changset} ->
+      {:error, changeset} ->
         render(conn, :edit, changeset: changeset, list: list)
     end
   end

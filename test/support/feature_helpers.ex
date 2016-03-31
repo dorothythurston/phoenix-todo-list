@@ -26,4 +26,8 @@ defmodule FeatureHelpers do
   def list_text do
     text_for_css_data_role("list")
   end
+
+  def item_text do
+    text_for_css_data_role("item")
+  end
 end

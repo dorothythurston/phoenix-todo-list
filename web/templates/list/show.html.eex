@@ -3,3 +3,24 @@
   <%= link "Edit List", to: list_path(@conn, :edit, @list) %>
   <%= link "Delete List", to: list_path(@conn, :delete, @list), method: :delete %>
 </div>
+
+<%= form_for @item_changeset, list_item_path(@conn, :create, @list), fn f -> %>
+  <label>
+    Name: <%= text_input f, :name %>
+  </label>
+  <label>
+    Content: <%= text_input f, :content %>
+  </label>
+  <%= submit "Create Item" %>
+<% end %>
+
+<ul>
+  <%= for item <- @list.items do %>
+    <li>
+      <div data-role="item">
+        <%= item.name %>
+        <%= item.content %>
+      </div>
+    </li>
+  <% end %>
+</ul>

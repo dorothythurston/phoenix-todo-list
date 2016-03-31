@@ -1,14 +1,15 @@
-defmodule PhoenixTodoList.List do
+defmodule PhoenixTodoList.Item do
   use PhoenixTodoList.Web, :model
 
-  schema "lists" do
+  schema "items" do
     field :name, :string
-    has_many :items, PhoenixTodoList.Item
+    field :content, :string
+    belongs_to :list, PhoenixTodoList.List
 
     timestamps
   end
 
-  @required_fields ~w(name)
+  @required_fields ~w(name content list_id)
   @optional_fields ~w()
 
   @doc """

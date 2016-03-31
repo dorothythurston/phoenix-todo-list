@@ -16,4 +16,13 @@ defmodule PhoenixTodoList.ItemController do
         render(conn, :new, changeset: changeset)
     end
   end
+
+  def delete(conn, %{"id" => id}) do
+    item = Repo.get!(Item, id)
+    list_id = item.list_id
+    Repo.delete(item)
+    conn
+    |> put_flash(:info, "Item deleted successfully.")
+    |> redirect(to: list_path(conn, :show, item.list_id))
+  end
 end

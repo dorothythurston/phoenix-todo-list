@@ -21,6 +21,7 @@ defmodule PhoenixTodoList.Router do
     resources "/lists", ListController do
       resources "/items", ItemController,  only: [:create]
     end
+    resources "/items", ItemController, only: [:delete]
   end
 
   # Other scopes may use custom stacks.

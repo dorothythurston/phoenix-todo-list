@@ -22,6 +22,8 @@ defmodule PhoenixTodoList.Router do
       resources "/items", ItemController,  only: [:create]
     end
     resources "/items", ItemController, only: [:delete]
+    get "/sign_up", UserController, :new
+    resources "/users", UserController, only: [:create]
   end
 
   # Other scopes may use custom stacks.

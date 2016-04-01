@@ -1,0 +1,23 @@
+<%= form_for @changeset, @action, fn f -> %>
+
+  <%= if @changeset.action do %>
+    <p>Oops! Something went wrong.</p>
+  <% end %>
+
+  <div id="user-name">
+    Name: <%= text_input f, :name %>
+    <%= error_tag f, :name %>
+  </div>
+
+  <div id="user-email">
+    Email: <%= text_input f, :email %>
+    <%= error_tag f, :email %>
+  </div>
+
+  <div id="user-password">
+    Password: <%= text_input f, :password_digest %>
+    <%= error_tag f, :password %>
+  </div>
+
+  <%= submit @button_text %>
+<% end %>

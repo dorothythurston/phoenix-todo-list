@@ -1,6 +1,6 @@
 defmodule PhoenixTodoList.User do
   use PhoenixTodoList.Web, :model
-  import Comeonin.Bcrypt, only: [hashpwsalt: 1]
+  alias PhoenixTodoList.Password
 
   schema "users" do
     field :name, :string
@@ -32,11 +32,6 @@ defmodule PhoenixTodoList.User do
   end
 
   defp hash_password(changeset) do
-    if password = get_change(changeset, :password) do
-      changeset
-      |> put_change(:password_digest, hashpwsalt(password))
-    else
-      changeset
-    end
+    Password.encrypt(changeset)
   end
 end

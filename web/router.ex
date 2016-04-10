@@ -25,7 +25,7 @@ defmodule PhoenixTodoList.Router do
     get "/sign_up", UserController, :new
     resources "/users", UserController, only: [:create]
     get "/sign_in", SessionController, :new
-    resources "/sessions", SessionController, only: [:create]
+    resources "/sessions", SessionController, only: [:create, :delete]
   end
 
   # Other scopes may use custom stacks.

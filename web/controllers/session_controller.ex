@@ -16,7 +16,7 @@ defmodule PhoenixTodoList.SessionController do
 
   def delete(conn, _params) do
     conn
-    |> delete_session(:current_user)
+    |> delete_session(:current_user_id)
     |> put_flash(:info, 'You have been logged out')
     |> redirect(to: session_path(conn, :new))
   end
@@ -30,7 +30,7 @@ defmodule PhoenixTodoList.SessionController do
   defp sign_in(user, password, conn) when is_map(user) do
     if Password.authenticate(password, user.password_digest) do
       conn
-        |> put_session(:current_user, user)
+        |> put_session(:current_user_id, user.id)
         |> put_flash(:info, 'Welcome!')
         |> redirect(to: list_path(conn, :index))
     else

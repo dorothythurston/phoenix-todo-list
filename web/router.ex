@@ -7,6 +7,9 @@ defmodule PhoenixTodoList.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    if Mix.env == :test do
+      plug PhoenixTodoList.Plug.SessionBackdoor
+    end
   end
 
   pipeline :api do

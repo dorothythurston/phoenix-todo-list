@@ -30,4 +30,24 @@ defmodule FeatureHelpers do
   def item_text do
     text_for_css_data_role("item")
   end
+
+  def navigate_to(url, as: user) do
+   format_uri(url, user)
+   |> navigate_to
+  end
+
+  defp format_uri(url, user) do
+    url
+    |> URI.parse
+    |> append_query("as=#{user.id}")
+    |> to_string
+  end
+
+  defp append_query(uri, query) do
+    if uri.query do
+      %{uri | query: "#{uri.query}&#{query}"}
+    else
+      %{uri | query: query}
+    end
+  end
 end
